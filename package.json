@@ -1,0 +1,70 @@
+{
+  "name": "discord-dm-manager",
+  "version": "1.0.0",
+  "description": "A comprehensive Discord DM manager to send messages to multiple users at once",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "author": "User",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"npm run react-start\" \"npm run wait-and-electron\"",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "wait-and-electron": "wait-on http://localhost:3000 && electron .",
+    "electron": "electron .",
+    "build": "npm run react-build && tsc --project tsconfig.electron.json",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1",
+    "electron": "^25.0.0",
+    "electron-builder": "^24.0.0",
+    "concurrently": "^7.6.0",
+    "wait-on": "^7.0.1",
+    "typescript": "^4.9.5",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.11",
+    "@types/node": "^18.11.18",
+    "electron-is-dev": "^2.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.discorddmmanager.app",
+    "productName": "Discord DM Manager",
+    "files": [
+      "build/**/*",
+      "dist/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

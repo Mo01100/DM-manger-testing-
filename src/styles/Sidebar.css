@@ -1,0 +1,265 @@
+.sidebar {
+  width: 300px;
+  background: #2c2f33;
+  color: #dcddde;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-right: 1px solid #1e1f22;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-header {
+  padding: 20px 15px;
+  border-bottom: 1px solid #202225;
+  background: #23272a;
+}
+
+.sidebar-header h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.user-info {
+  padding: 8px 10px;
+  background: #2c2f33;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.username {
+  display: block;
+  color: #b5bac1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-search {
+  padding: 10px 8px;
+  border-bottom: 1px solid #202225;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: #40444b;
+  border: 1px solid #202225;
+  border-radius: 6px;
+  color: #dcddde;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input::placeholder {
+  color: #72767d;
+}
+
+.search-input:focus {
+  border-color: #667eea;
+}
+
+.channels-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.section-group {
+  margin-bottom: 15px;
+}
+
+.section-title {
+  padding: 12px 15px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #949ba4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.channels-list,
+.guilds-list {
+  padding: 0 8px;
+}
+
+.no-channels {
+  padding: 15px;
+  text-align: center;
+  color: #949ba4;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Direct Messages */
+.channel-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin: 2px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 10px;
+}
+
+.channel-item:hover {
+  background: rgba(79, 84, 92, 0.4);
+}
+
+.channel-item.active {
+  background: #5865f2;
+}
+
+.channel-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.channel-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.channel-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #dcddde;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.channel-item.active .channel-name {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Guilds/Servers */
+.guild-item {
+  margin-bottom: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.guild-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 10px;
+}
+
+.guild-header:hover {
+  background: rgba(79, 84, 92, 0.4);
+}
+
+.guild-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.guild-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.guild-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.guild-members-count {
+  font-size: 11px;
+  color: #949ba4;
+  margin-top: 2px;
+}
+
+.expand-icon {
+  font-size: 11px;
+  color: #72767d;
+  transition: transform 0.2s;
+}
+
+.guild-members {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.member-item:hover:not(.disabled) {
+  background: rgba(79, 84, 92, 0.3);
+}
+
+.member-item.active {
+  background: #5865f2;
+  color: #fff;
+}
+
+.member-item.disabled {
+  color: #72767d;
+  cursor: default;
+}
+
+.member-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.member-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Scrollbar */
+.channels-section::-webkit-scrollbar,
+.guild-members::-webkit-scrollbar {
+  width: 8px;
+}
+
+.channels-section::-webkit-scrollbar-track,
+.guild-members::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.channels-section::-webkit-scrollbar-thumb,
+.guild-members::-webkit-scrollbar-thumb {
+  background: #202225;
+  border-radius: 4px;
+}
+
+.channels-section::-webkit-scrollbar-thumb:hover,
+.guild-members::-webkit-scrollbar-thumb:hover {
+  background: #36393f;
+}
+

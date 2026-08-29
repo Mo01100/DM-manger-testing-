@@ -3,14 +3,15 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--login-bg);
   padding: 20px;
 }
 
 .login-card {
-  background: white;
+  background: var(--login-card-bg);
+  color: var(--login-card-text);
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-elevated);
   padding: 40px;
   max-width: 600px;
   width: 100%;
@@ -19,7 +20,7 @@
 }
 
 .login-card h1 {
-  color: #667eea;
+  color: var(--accent);
   margin-bottom: 10px;
   text-align: center;
   font-size: 28px;
@@ -27,7 +28,7 @@
 
 .subtitle {
   text-align: center;
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 30px;
   font-size: 14px;
 }
@@ -35,7 +36,7 @@
 .login-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--accent-gradient);
   color: white;
   border: none;
   border-radius: 8px;
@@ -48,7 +49,7 @@
 
 .login-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
 }
 
 .login-btn:disabled {
@@ -63,8 +64,8 @@
 .cancel-btn {
   width: 100%;
   padding: 12px;
-  background: #e0e0e0;
-  color: #333;
+  background: var(--bg-input);
+  color: var(--text-primary);
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -74,7 +75,7 @@
 }
 
 .cancel-btn:hover {
-  background: #d0d0d0;
+  background: var(--bg-hover);
 }
 
 .button-group {
@@ -85,9 +86,9 @@
 }
 
 .error-message {
-  background-color: #fee;
-  border: 1px solid #fcc;
-  color: #c33;
+  background-color: var(--danger-bg);
+  border: 1px solid var(--danger);
+  color: var(--danger);
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -98,14 +99,15 @@
 }
 
 .info-section {
-  background: #f5f5f5;
+  background: var(--bg-secondary);
   padding: 20px;
   border-radius: 8px;
   font-size: 14px;
+  border: 1px solid var(--border-primary);
 }
 
 .info-section h3 {
-  color: #333;
+  color: var(--text-heading);
   margin-bottom: 12px;
   font-size: 16px;
   margin-top: 0;
@@ -115,7 +117,7 @@
   margin: 0 0 12px 20px;
   padding: 0;
   line-height: 1.8;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .info-section li {
@@ -123,12 +125,13 @@
 }
 
 .security-note {
-  background: #fffacd;
-  border: 1px solid #f0e68c;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning);
   padding: 10px;
   border-radius: 6px;
   font-size: 12px;
   margin: 12px 0 0 0;
+  color: var(--text-primary);
 }
 
 .token-form-container {
@@ -147,7 +150,7 @@
 }
 
 .token-form-container h3 {
-  color: #333;
+  color: var(--text-heading);
   margin-bottom: 15px;
   font-size: 18px;
 }
@@ -160,14 +163,16 @@
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-heading);
   font-size: 14px;
 }
 
 .token-textarea {
   width: 100%;
   padding: 12px 15px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-secondary);
+  background: var(--bg-input);
+  color: var(--text-primary);
   border-radius: 8px;
   font-size: 13px;
   font-family: 'Courier New', monospace;
@@ -177,18 +182,18 @@
 
 .token-textarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
 }
 
 .token-textarea:disabled {
-  background-color: #f5f5f5;
-  color: #999;
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
 }
 
 .token-instructions {
-  background: #f0f7ff;
-  border: 1px solid #b3d9ff;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent);
   padding: 15px;
   border-radius: 8px;
   margin-top: 20px;
@@ -196,7 +201,7 @@
 }
 
 .token-instructions h4 {
-  color: #0066cc;
+  color: var(--accent);
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 14px;
@@ -206,7 +211,7 @@
   margin: 0 0 10px 20px;
   padding: 0;
   line-height: 1.8;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .token-instructions li {
@@ -215,8 +220,8 @@
 
 .command {
   display: block;
-  background: #fff;
-  border: 1px solid #ddd;
+  background: var(--bg-input);
+  border: 1px solid var(--border-secondary);
   padding: 10px;
   border-radius: 4px;
   margin: 8px 0;
@@ -225,8 +230,9 @@
   word-break: break-all;
   cursor: pointer;
   transition: background 0.2s;
+  color: var(--text-primary);
 }
 
 .command:hover {
-  background: #f9f9f9;
+  background: var(--bg-hover);
 }

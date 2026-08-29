@@ -4,6 +4,7 @@ import '../styles/Sidebar.css';
 interface User {
   id: string;
   username: string;
+  global_name?: string;
   avatar?: string;
   discriminator?: string;
 }
@@ -54,31 +55,43 @@ const Sidebar: React.FC<SidebarProps> = ({
     setExpandedGuilds(newExpanded);
   };
 
+  const getUserDisplayName = (user?: User): string => {
+    if (!user) return 'Unknown';
+    return user.global_name || user.username;
+  };
+
   const getChannelName = (channel: Channel): string => {
     if (channel.name && channel.name.trim()) {
       return channel.name;
     }
-    if (channel.recipient?.username) {
-      return channel.recipient.username;
+    if (channel.recipient) {
+      return getUserDisplayName(channel.recipient);
     }
     if (channel.recipients && channel.recipients.length > 0) {
-      return channel.recipients.map(r => r.username).join(', ');
+      return channel.recipients.map(r => getUserDisplayName(r)).join(', ');
     }
     return 'Unknown';
   };
 
   const getAvatar = (user?: User): string => {
     if (user?.avatar && user?.id) {
-      return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+      const ext = user.avatar.startsWith('a_') ? 'gif' : 'png';
+      return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=128`;
     }
-    return 'https://cdn.discordapp.com/embed/avatars/0.png';
+    // Use user ID to pick one of the 6 default avatars (0-5) for variety
+    const defaultIndex = user?.id ? (BigInt(user.id) >> BigInt(22)) % BigInt(6) : BigInt(0);
+    return `https://cdn.discordapp.com/embed/avatars/${defaultIndex}.png`;
   };
 
   // Filter channels and members based on search
   const filteredChannels = useMemo(() => {
     if (!searchQuery.trim()) return channels;
     const query = searchQuery.toLowerCase();
-    return channels.filter(ch => getChannelName(ch).toLowerCase().includes(query));
+    return channels.filter(ch => {
+      const name = getChannelName(ch).toLowerCase();
+      const username = ch.recipient?.username?.toLowerCase() || '';
+      return name.includes(query) || username.includes(query);
+    });
   }, [channels, searchQuery]);
 
   const filteredGuildMembers = useMemo(() => {
@@ -87,7 +100,11 @@ const Sidebar: React.FC<SidebarProps> = ({
     const filtered: { [key: string]: User[] } = {};
     
     Object.entries(guildMembers).forEach(([guildId, members]) => {
-      filtered[guildId] = members.filter(m => m.username.toLowerCase().includes(query));
+      filtered[guildId] = members.filter(m => {
+        const displayName = (m.global_name || m.username).toLowerCase();
+        const username = m.username.toLowerCase();
+        return displayName.includes(query) || username.includes(query);
+      });
     });
     
     return filtered;
@@ -207,7 +224,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 e.currentTarget.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
                               }}
                             />
-                            <span className="member-name">{member.username}</span>
+                            <span className="member-name">{getUserDisplayName(member)}</span>
                           </div>
                         ))}
                         {guildMembers.length > 50 && (

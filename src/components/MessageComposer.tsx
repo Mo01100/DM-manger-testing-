@@ -22,7 +22,7 @@ interface TenorGif {
   };
 }
 
-const TENOR_API_KEY = 'AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ'; // Public Tenor API key (Google)
+const TENOR_API_KEY = import.meta.env.VITE_TENOR_API_KEY || '';
 
 const GIF_CATEGORIES = [
   { name: 'Trending', query: 'trending', emoji: '🔥' },
